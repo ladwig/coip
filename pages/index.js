@@ -51,7 +51,7 @@ class Main extends Component {
         </Container>
           <style jsx global>{`
             .main {
-              background-image: url("../static/night.jpg");
+              background-image: url("../static/bg.jpg");
               height: 65vh;
               border-radius: 0px !important;
 

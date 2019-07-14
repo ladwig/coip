@@ -6,7 +6,6 @@ import Router from 'next/router'
 import Header from '../components/header'
 import Navigation from '../components/navigation'
 const fetch = require('isomorphic-fetch')
-const ip = 'http://localhost:4000'
 
 class Login extends Component {
   constructor(props) {
@@ -39,7 +38,7 @@ class Login extends Component {
   //und leitet User main weiter. Falls nicht wird State inkl. Fehlercode gesetzt
   async sendLogin() {
     try {
-      const response = await fetch(ip + '/issue-token', {
+      const response = await fetch('/api/issue-token', {
         headers: {
           Authorization:  'Basic ' + this.state.user + ':' + this.state.password //evtl. direkt auf Client verschlüsseln?
         }
@@ -62,7 +61,7 @@ class Login extends Component {
   static async getInitialProps({req, res}) {
     try {
       const token = req.headers.cookie.split('=')[1]
-      const response = await fetch(ip + '/verify', {
+      const response = await fetch('/api/index/verify', {
         headers: {
           Authorization: 'Bearer ' + token
         }

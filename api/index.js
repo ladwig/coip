@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
 	res.writeHead(200, {
 	  'Content-Type': 'video/mp4'
         });
-        
+
         res.end(writer);
         return;
       }
@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
   }
 
   //Wird beim Login ausgeführt. Codiert übergebene credentials und übergibt diese an FHWS-API
-  if (req.url === '/issue-token') {
+  if (req.url === '/api/issue-token') {
     const credentials = String(req.headers['authorization']).replace('Basic ', '');
     const [username, password] = credentials.split(':');
     const encodedCredentials = new Buffer(credentials).toString('base64');
@@ -69,7 +69,7 @@ module.exports = async (req, res) => {
 
   //Wird beim aktualsieren von jeglichen Seiten angefragt. Prüft ob Cookie mit token vorhanden ist,
   //welches zu einem der tokens im Objekt "tokens" passt
-  if (req.url === '/verify') {
+  if (req.url === '/api/verify') {
     const token = String(req.headers['authorization']).replace('Bearer ', '');
     const found = Object.values(tokens).find(item => item.token === token);
     const user = Object.keys(tokens).find(key => tokens[key] === found)

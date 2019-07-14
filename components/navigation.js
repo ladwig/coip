@@ -10,7 +10,7 @@ class Navigation extends Component {
 render() {
     return (
       <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand>
       <img src="../static/carpic.svg" width="30" height="30" className="d-inline-block align-top" alt="CarOverIP"/>
     </Navbar.Brand>
         <Navbar.Brand href="index">CarOverIP</Navbar.Brand>

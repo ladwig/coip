@@ -9,7 +9,6 @@ import Controls from '../components/controls'
 
 const fetch = require('isomorphic-fetch')
 const WebSocket = require('ws');
-const ip = 'http://localhost:4000'
 
 class Main extends Component {
   constructor(props) {
@@ -21,7 +20,7 @@ class Main extends Component {
   static async getInitialProps({req, res}) {
     try {
       const token = req.headers.cookie.split('=')[1]
-      const response = await fetch(ip + '/verify', {
+      const response = await fetch('/api/verify', {
         headers: {
           Authorization: 'Bearer ' + token
         }

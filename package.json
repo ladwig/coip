@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "dev": "next",
+    "build": "next build"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "isomorphic-ws": "^4.0.1",
+    "next": "^9.0.1",
+    "next-cookies": "^1.1.2",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
+    "react-dom": "^16.8.6",
+    "es6-promise": "^4.2.6",
+    "isomorphic-fetch": "^2.2.1",
+    "memory-streams": "^0.1.3",
+    "ws": "^7.0.0"
+  }
+}

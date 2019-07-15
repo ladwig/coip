@@ -38,7 +38,7 @@ class Login extends Component {
   //und leitet User main weiter. Falls nicht wird State inkl. Fehlercode gesetzt
   async sendLogin() {
     try {
-      const response = await fetch('/api/issue-token', {
+      const response = await fetch('/api/auth/issue-token', {
         headers: {
           Authorization:  'Basic ' + this.state.user + ':' + this.state.password //evtl. direkt auf Client verschlüsseln?
         }
@@ -61,7 +61,7 @@ class Login extends Component {
   static async getInitialProps({req, res}) {
     try {
       const token = req.headers.cookie.split('=')[1]
-      const response = await fetch('/api/index/verify', {
+      const response = await fetch('/api/auth/verify', {
         headers: {
           Authorization: 'Bearer ' + token
         }

@@ -20,16 +20,17 @@ class Main extends Component {
   static async getInitialProps({req, res}) {
     try {
       const token = req.headers.cookie.split('=')[1]
-      const response = await fetch('/api/verify', {
+      const response = await fetch('/api/index/', {
         headers: {
           Authorization: 'Bearer ' + token
         }
       });
       const content = await response.json()
       if(content.allowed) {
-      return { loggedIn: true,
-               user: content.user,
-             }
+        return {
+          loggedIn: true,
+           user: content.user,
+        }
       }
     }
      catch(e) {
@@ -39,7 +40,7 @@ class Main extends Component {
     if (res) {
       res.writeHead(302, {
         Location: '/login'
-      })
+      });
       res.end()
     }
     else {

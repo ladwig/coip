@@ -52,6 +52,9 @@ class Main extends Component {
           <style jsx global>{`
             .main {
               background-image: url("../static/bg.jpg");
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position-y: 55%;
               height: 65vh;
               border-radius: 0px !important;
 
@@ -76,11 +79,9 @@ class Main extends Component {
 
             .line {
               display: block;
-              border: 1;
-              border-right: 2px solid #ccc;
+              border-right: 1px solid #ccc;
               margin: 1em 0;
               padding: 0;
-              border-right-color: #1C4179;
 
             }
             .box{

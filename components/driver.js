@@ -7,10 +7,10 @@ class Driver extends Component {
      this.state = {
        loading: false
      };
- }
+   }
 
- handleClick = () => {
- }
+  handleClick = () => {
+  }
 
   render() {
       return (

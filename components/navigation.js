@@ -1,4 +1,4 @@
-import { Container, Button, Form, NavDropdown, FormControl, Col, Row, Nav, Navbar } from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap'
 import { Component } from 'react'
 import Head from 'next/head'
 

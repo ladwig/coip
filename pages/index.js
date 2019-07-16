@@ -3,6 +3,8 @@ import { Component } from 'react'
 import Head from 'next/head'
 import Header from '../components/header'
 import Navigation from '../components/navigation'
+import Impress from '../components/impress'
+import Dsgvo from '../components/dsgvo'
 
 class Main extends Component {
 
@@ -19,7 +21,6 @@ class Main extends Component {
         <h1 className="uberschrift">Willkommen!</h1>
         <p>
         <br/>
-
         <br/>
           Diese Website ist im Rahmen des Softwareentwicklungsprojekts / Programierprojekt der FHWS entstanden.
           <br/>
@@ -27,7 +28,6 @@ class Main extends Component {
           dann die Möglichkeit das von uns entwickelte Spielzeugauto zu steuern!
           <br/>
           Viel Spaß!
-
         <br/>
         <br/>
           <Button href="login" variant="warning" className="mainbutton">Login</Button>
@@ -44,6 +44,8 @@ class Main extends Component {
             <Col className="line" sm><font size="5" color="Black"><u>Links:</u></font>
               <br/> FHWS
               <br/> Github
+              <Dsgvo/>
+              <Impress/>
           </Col>
             <Col className="box" sm><font size="5" color="Black"><u>Test:</u></font>
               <br/>Und hier steht noch mehr</Col>

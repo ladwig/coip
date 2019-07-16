@@ -12,11 +12,11 @@ class Login extends Component {
      super(props);
      //Legt die initialen States für user und password fest
      this.state = {
-                   user: "",
-                   password: "",
-                   tempname: "",
-                   errorMsg: "",
-                  };
+       user: "",
+       password: "",
+       tempname: "",
+       errorMsg: "",
+     };
      this.handleChange = this.handleChange.bind(this);
      this.handleSubmit = this.handleSubmit.bind(this);
    }

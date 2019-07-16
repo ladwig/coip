@@ -1,32 +1,52 @@
 import { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Alert } from 'react-bootstrap';
+
 const WebSocket = require('isomorphic-ws');
 const ws = new WebSocket('ws://localhost:8080');
-ws.binaryType = "arraybuffer";
 const code = new Uint8Array(1);
-ws.onerror = (e) => {
-  console.error(e);
-  // hier noch timeout für reconnect einbauen!
-}
 
 let W = false;
 let A = false;
 let S = false;
 let D = false;
 
+ws.binaryType = "arraybuffer";
+ws.onerror = (e) => {
+  console.error(e);
+  // hier noch timeout für reconnect einbauen!
+}
+
+ws.onopen = () => {
+  this.setState({
+    online: true
+  });
+}
+
 class Controls extends Component {
   constructor(props) {
      super(props);
+     this.state = {
+       online: false
+     };
  }
 
  componentDidMount = () => {
-  window.addEventListener("keyup", this.keyUpHandler) //EventListener für Keyeingabe starten
-  window.addEventListener("keydown", this.keyDownHandler) //EventListener für Keyeingabe starten
+   window.addEventListener("keyup", this.keyUpHandler) //EventListener für Keyeingabe starten
+   window.addEventListener("keydown", this.keyDownHandler) //EventListener für Keyeingabe starten
  }
 
   componentWillUnmount = () => {
     window.removeEventListener("keyup", this.keyUpHandler) //EventListener für Keyeingabe beenden
     window.removeEventListener("keydown", this.keyDownHandler) //EventListener für Keyeingabe beenden
+  }
+
+  send = () => {
+    try {
+      ws.send(code.buffer);
+    }
+    catch(e) {
+      console.log(e)
+    }
   }
 
 //MouseDown events handeln
@@ -48,15 +68,6 @@ class Controls extends Component {
         code[0] = 21;
         this.send();
         break
-    }
-  }
-
-  send = () => {
-    try {
-      ws.send(code.buffer);
-    }
-    catch(e) {
-      console.log(e)
     }
   }
 
@@ -150,56 +161,59 @@ class Controls extends Component {
     }
   }
 
-render() {
-    return (
-      <div>
+  render() {
+    if (this.state.online) {
+      return (
+        <div>
+          <div className="goforward" >
+            <Button variant="warning" onMouseDown={() => this.handleMouseDown("w")} onMouseUp={() => this.handleMouseUp("w")}>↑</Button>
+          </div>
+          <div className="lbr">
+            <Button variant="warning" onMouseDown={() => this.handleMouseDown("a")} onMouseUp={() => this.handleMouseUp("a")}>←</Button>
+          <div className="placeholder">
+            <Button variant="disabled">-</Button>
+          </div>
+            <Button variant="warning" onMouseDown={() => this.handleMouseDown("d")} onMouseUp={() => this.handleMouseUp("d")}>→</Button>
+          </div>
+            <div className="gobackwards" >
+            <Button variant="warning" onMouseDown={() => this.handleMouseDown("s")} onMouseUp={() => this.handleMouseUp("s")}>↓</Button>
+          </div>
+            <style jsx global>{`
 
-      <div className="goforward" >
-        <Button variant="warning" onMouseDown={() => this.handleMouseDown("w")} onMouseUp={() => this.handleMouseUp("w")}>↑</Button>
-      </div>
-      <div className="lbr">
-        <Button variant="warning" onMouseDown={() => this.handleMouseDown("a")} onMouseUp={() => this.handleMouseUp("a")}>←</Button>
-      <div className="placeholder">
-        <Button variant="disabled">-</Button>
-      </div>
-        <Button variant="warning" onMouseDown={() => this.handleMouseDown("d")} onMouseUp={() => this.handleMouseUp("d")}>→</Button>
-      </div>
-        <div className="gobackwards" >
-        <Button variant="warning" onMouseDown={() => this.handleMouseDown("s")} onMouseUp={() => this.handleMouseUp("s")}>↓</Button>
-      </div>
-        <style jsx global>{`
+              .goforward {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 5vh;
+              }
 
-          .goforward {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5vh;
-          }
+              .lbr {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 0vh;
+              }
 
-          .lbr {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 0vh;
-          }
+              .gobackwards {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
 
-          .gobackwards {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-
-          .placeholder {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 0 !important;
-          }
-
-      `}</style>
-      </div>
-    )
+              .placeholder {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 0 !important;
+              }
+          `}</style>
+        </div>
+      )
+    }
+    else {
+      return ( <div> <Alert variant="danger">Es konnte keine Verbindung zum Auto herstellt werden. (Keine Verbindung zu ws-Server möglich!)</Alert></div> )
+    }
   }
 }
 
-export default Controls;
+export default Controls

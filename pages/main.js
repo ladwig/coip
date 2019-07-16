@@ -7,6 +7,7 @@ import Navigation from '../components/navigation'
 import Header from '../components/header'
 import Controls from '../components/controls'
 import Video from '../components/video'
+import Driver from '../components/driver'
 
 const fetch = require('isomorphic-fetch')
 const WebSocket = require('ws');
@@ -71,6 +72,7 @@ class Main extends Component {
               Pascal Ott <Badge variant="light">Watching (4min)</Badge><br/>
               Daniel Ladwig <Badge variant="success">Driving (3min)</Badge><br/>
               Peter Braun <Badge variant="light">Watching (1min)</Badge>
+              <Driver/>
               </Col>
             </Row>
           </Container>

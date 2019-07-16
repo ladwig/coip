@@ -1,11 +1,12 @@
 import { Component } from 'react'
-import { Container, Button, Col, Row, Image, Badge } from 'react-bootstrap'
+import { Container, Button, Col, Row, Badge } from 'react-bootstrap'
 import Head from 'next/head'
 import Router from 'next/router'
 import Cookies from 'next-cookies'
 import Navigation from '../components/navigation'
 import Header from '../components/header'
 import Controls from '../components/controls'
+import Video from '../components/video'
 
 const fetch = require('isomorphic-fetch')
 const WebSocket = require('ws');
@@ -49,10 +50,6 @@ class Main extends Component {
     return { loggedIn: false }
   }
 
-  async test() {
-
-  }
-
    render() {
     if (this.props.loggedIn) {
       return (
@@ -64,7 +61,7 @@ class Main extends Component {
         <Navigation allowed={this.props.loggedIn} user={this.props.user}/>
           <Container className="container">
             <Row>
-              <Col xs={12} sm={9}><Image className="videopicture" src="/static/fakecam.jpg" fluid /><br/>
+              <Col xs={12} sm={9}><Video/>
               <Controls/>
                 <Container/>
                   </Col>

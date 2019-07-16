@@ -20,7 +20,7 @@ class Main extends Component {
   static async getInitialProps({req, res}) {
     try {
       const token = req.headers.cookie.split('=')[1]
-      const response = await fetch('/api/index/', {
+      const response = await fetch('http://localhost:4000/verify', {
         headers: {
           Authorization: 'Bearer ' + token
         }
@@ -53,12 +53,6 @@ class Main extends Component {
 
   }
 
-    //Löscht den Cookie (inkl. token) und leitet den User auf den Login um
-    logout() {
-      document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-      Router.push('/login')
-    }
-
    render() {
     if (this.props.loggedIn) {
       return (
@@ -80,7 +74,6 @@ class Main extends Component {
               Pascal Ott <Badge variant="light">Watching (4min)</Badge><br/>
               Daniel Ladwig <Badge variant="success">Driving (3min)</Badge><br/>
               Peter Braun <Badge variant="light">Watching (1min)</Badge>
-                <br/><Button onClick={this.logout}>Logout</Button>
               </Col>
             </Row>
           </Container>

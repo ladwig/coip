@@ -1,11 +1,18 @@
-import { Navbar } from 'react-bootstrap'
+import { Navbar, DropdownButton, Dropdown } from 'react-bootstrap'
 import { Component } from 'react'
+import Router from 'next/router'
 import Head from 'next/head'
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
   }
+
+  logout() {
+    document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+    Router.push('/login')
+  }
+
 
 render() {
     return (
@@ -17,7 +24,12 @@ render() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
         <Navbar.Text>
-          {this.props.allowed ? <div><small>Angemeldet als</small><a href="login"> {this.props.user}</a> </div>: null}
+        {this.props.allowed ?
+        <DropdownButton  alignRight id="dropdown-menu-align-right" variant="secondary" title={this.props.user}>
+                  <Dropdown.Item href="index">Startseite</Dropdown.Item>
+          <Dropdown.Item onClick={this.logout}>Logout</Dropdown.Item>
+        </DropdownButton>
+        : null}
         </Navbar.Text>
         </Navbar.Collapse>
      </Navbar>

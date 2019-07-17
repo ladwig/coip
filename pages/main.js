@@ -59,7 +59,7 @@ class Main extends Component {
         <Head>
           <title>CarOverIP - Let's drive</title>
         </Head>
-        <Navigation allowed={this.props.loggedIn} user={this.props.user}/>
+        <Navigation loggedIn={this.props.loggedIn} user={this.props.user}/>
           <Container className="container">
             <Row>
               <Col xs={12} sm={9}><Video/>

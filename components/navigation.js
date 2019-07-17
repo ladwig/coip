@@ -24,7 +24,7 @@ render() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
         <Navbar.Text>
-        {this.props.allowed ?
+        {this.props.loggedIn ?
         <DropdownButton  alignRight id="dropdown-menu-align-right" variant="secondary" title={this.props.user}>
                   <Dropdown.Item href="index">Startseite</Dropdown.Item>
           <Dropdown.Item onClick={this.logout}>Logout</Dropdown.Item>

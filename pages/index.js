@@ -38,7 +38,7 @@ class Main extends Component {
         <Head>
           <title>CarOverIP - Welcome</title>
         </Head>
-        <Navigation allowed={this.props.loggedIn} user={this.props.user}/>
+        <Navigation loggedIn={this.props.loggedIn} user={this.props.user}/>
         <Jumbotron className="main">
           <Container className="maintext">
           <h1 className="uberschrift">Willkommen!</h1>
@@ -53,7 +53,7 @@ class Main extends Component {
             Viel Spaß!
           <br/>
           <br/>
-            <Button href="login" variant="warning" className="mainbutton">Login</Button>
+            <Button href="login" variant="warning" className="mainbutton">{this.props.loggedIn ? "Weiter..." : "Login"}</Button>
           </p>
           </Container>
       </Jumbotron>

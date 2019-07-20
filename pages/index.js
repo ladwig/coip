@@ -59,19 +59,26 @@ class Main extends Component {
       </Jumbotron>
       <Container>
         <Row>
-            <Col className="line" sm><font size="5" color="Black"><u>Über uns:</u></font>
-              <br/> Ismar
-              <br/> Andrej
-              <br/>Daniel
-              <br/>Simon</Col>
-            <Col className="line" sm><font size="5" color="Black"><u>Links:</u></font>
-              <br/> FHWS
-              <br/> Github
-              <Dsgvo/>
-              <Impress/>
+            <Col className="line" sm><h4>Wer:</h4>
+            <ul>
+              <li>Ismar Klokic</li>
+              <li>Daniel Ladwig</li>
+              <li>Andrej Weiß</li>
+            </ul>
+              </Col>
+            <Col className="line" sm><h4>Links:</h4>
+            <ul>
+              <li><Impress/></li>
+              <li><Dsgvo/></li>
+            </ul>
           </Col>
-            <Col className="box" sm><font size="5" color="Black"><u>Test:</u></font>
-              <br/>Und hier steht noch mehr</Col>
+            <Col className="box" sm><h4>Was:</h4>
+            <ul>
+              <li>Raspberry Pi</li>
+              <li>JavaScript</li>
+              <li>Now / Zeit.co</li>
+            </ul>
+            </Col>
         </Row>
       </Container>
           <style jsx global>{`
@@ -80,7 +87,7 @@ class Main extends Component {
               background-size: cover;
               background-repeat: no-repeat;
               background-position-y: 55%;
-              height: 65vh;
+              height: 100%;
               border-radius: 0px !important;
 
             }
@@ -93,9 +100,11 @@ class Main extends Component {
             text-align: center;
             color: white;
             font-size: 55px;
-
             }
 
+            .ul {
+              list-style: none;
+            }
             .maintext {
               text-align: center;
               color: white;

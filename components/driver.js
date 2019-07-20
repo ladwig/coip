@@ -15,7 +15,9 @@ class Driver extends Component {
   render() {
       return (
         <div>
-          <Button variant="warning" onClick={this.handleClick}>Fahrer werden</Button>
+          <Button variant="warning" onClick={this.handleClick}>
+            Fahrer werden
+          </Button>
         </div>
       )
   }

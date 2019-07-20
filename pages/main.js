@@ -38,7 +38,6 @@ class Main extends Component {
      catch(e) {
       console.log(e)
     }
-
     if (res) {
       res.writeHead(302, {
         Location: '/login'
@@ -51,7 +50,7 @@ class Main extends Component {
     return { loggedIn: false }
   }
 
-   render() {
+  render() {
     if (this.props.loggedIn) {
       return (
         <div>

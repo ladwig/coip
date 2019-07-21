@@ -1,9 +1,7 @@
-import { Navbar, DropdownButton, Dropdown } from 'react-bootstrap'
-import { Component } from 'react'
-import Router from 'next/router'
-import Head from 'next/head'
-
-const serverUrl =  process.env.NOW_REGION === 'dev1' ? 'http://localhost:3000' : 'https://car-over-ip.now.sh';
+import { Navbar, DropdownButton, Dropdown } from "react-bootstrap";
+import { Component } from "react";
+import Router from "next/router";
+import Head from "next/head";
 
 class Navigation extends Component {
   constructor(props) {
@@ -11,41 +9,51 @@ class Navigation extends Component {
   }
 
   async logout() {
-                document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-                          Router.push('/login')
-      try {
-        const response = await fetch(serverUrl + '/api/auth?type=delete-token');
-        const content = await response.json();
-        if (response.status === 200) {
-          console.log('logout successful')
-        }
-      } catch(e) {
-        console.log(e)
+    try {
+      const response = await fetch("/api/auth?type=delete-token");
+      const content = await response.json();
+
+      if (response.status === 200) {
+        document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+        Router.push("/login");
       }
+    } catch (e) {
+      console.log(e);
+    }
   }
 
-
-render() {
+  render() {
     return (
       <Navbar bg="light" expand="lg">
-      <Navbar.Brand>
-      <img src="../static/carpic.svg" width="30" height="30" className="d-inline-block align-top" alt="CarOverIP"/>
-    </Navbar.Brand>
+        <Navbar.Brand>
+          <img
+            src="../static/carpic.svg"
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+            alt="CarOverIP"
+          />
+        </Navbar.Brand>
         <Navbar.Brand href="index">CarOverIP</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-        <Navbar.Text>
-        {this.props.loggedIn ?
-        <DropdownButton  alignRight id="dropdown-menu-align-right" variant="secondary" title={this.props.user}>
-                  <Dropdown.Item href="index">Startseite</Dropdown.Item>
-          <Dropdown.Item onClick={this.logout}>Logout</Dropdown.Item>
-        </DropdownButton>
-        : null}
-        </Navbar.Text>
+          <Navbar.Text>
+            {this.props.loggedIn ? (
+              <DropdownButton
+                alignRight
+                id="dropdown-menu-align-right"
+                variant="secondary"
+                title={this.props.user}
+              >
+                <Dropdown.Item href="index">Startseite</Dropdown.Item>
+                <Dropdown.Item onClick={this.logout}>Logout</Dropdown.Item>
+              </DropdownButton>
+            ) : null}
+          </Navbar.Text>
         </Navbar.Collapse>
-     </Navbar>
-    )
+      </Navbar>
+    );
   }
 }
 
-export default Navigation
+export default Navigation;

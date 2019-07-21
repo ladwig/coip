@@ -55,5 +55,10 @@ module.exports = async (req, res) => {
     return;
   }
 
+  if (type === 'list-users') {
+    res.json(Object.keys(tokens));
+    return;
+  }
+
   res.send("ok")
 }

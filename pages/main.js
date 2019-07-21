@@ -17,6 +17,12 @@ const serverUrl =  process.env.NOW_REGION === 'dev1' ? 'http://localhost:3000' :
 class Main extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      activeUsers: []
+    }
+
+    this.fetchActiveUsers = this.fetchActiveUsers.bind(this);
   }
 
   //Prüft ob token im gesetzen Cookie mit token auf Backendserver übereinstimmt,
@@ -52,6 +58,31 @@ class Main extends Component {
     return { loggedIn: false }
   }
 
+  async fetchActiveUsers() {
+    try {
+      const response = await fetch(serverUrl + '/api/auth?type=list-users');
+      const content = await response.json();
+
+      if (response.status === 200) {
+        this.setState({
+          activeUsers: content
+        })
+      }
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
+  componentDidMount() {
+    this.activeUserTimeout = setTimeout(this.fetchActiveUsers, 2000);
+  }
+
+  componentDidUnmount() {
+    if (this.activeUserTimeout) {
+      clearTimeout(this.activeUserTimeout);
+    }
+  }
+
   render() {
     if (this.props.loggedIn) {
       return (
@@ -68,11 +99,9 @@ class Main extends Component {
                 <Container/>
                   </Col>
               <Col xs={12} sm={2}><Badge variant="light">9</Badge> User online <br/><br/>
-              Ismar Klokic <Badge variant="dark">Waiting (2min)</Badge><br/>
-              Hakan Arda <Badge variant="light">Watching (71min)</Badge><br/>
-              Pascal Ott <Badge variant="light">Watching (4min)</Badge><br/>
-              Daniel Ladwig <Badge variant="success">Driving (3min)</Badge><br/>
-              Peter Braun <Badge variant="light">Watching (1min)</Badge>
+              <>{this.state.activeUsers.map(user => {
+                return <>{user} <Badge variant="light">Watching (1min)</Badge></>
+              })}</>
               <Driver/>
               </Col>
             </Row>

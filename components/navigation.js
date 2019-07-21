@@ -9,7 +9,7 @@ class Navigation extends Component {
   }
 
   logout() {
-    document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+
 
       try {
         const response = await fetch(serverUrl + '/api/auth?type=delete-token');
@@ -17,6 +17,7 @@ class Navigation extends Component {
 
         if (response.status === 200) {
           console.log('logout successful')
+          document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
           Router.push('/login')
         }
       } catch(e) {

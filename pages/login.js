@@ -16,7 +16,7 @@ class Login extends Component {
      this.state = {
        user: "",
        password: "",
-       tempname: "",
+       optionName: "",
        errorMsg: "",
      };
      this.handleChange = this.handleChange.bind(this);
@@ -43,7 +43,7 @@ class Login extends Component {
       const response = await fetch('/api/auth?type=issue-token', {
         headers: {
           Authorization:  'Basic ' + this.state.user + ':' + this.state.password,
-          Name: this.state.tempname
+          Name: this.state.optionName
         }
       });
       const content = await response.json()

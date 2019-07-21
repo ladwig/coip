@@ -3,14 +3,14 @@ import { Component } from 'react'
 import Router from 'next/router'
 import Head from 'next/head'
 
+const serverUrl =  process.env.NOW_REGION === 'dev1' ? 'http://localhost:3000' : 'https://car-over-ip.now.sh';
+
 class Navigation extends Component {
   constructor(props) {
     super(props);
   }
 
   async logout() {
-
-
       try {
         const response = await fetch(serverUrl + '/api/auth?type=delete-token');
         const content = await response.json();

@@ -100,7 +100,7 @@ class Main extends Component {
                   </Col>
               <Col xs={12} sm={2}><Badge variant="light">9</Badge> User online <br/><br/>
               <>{this.state.activeUsers.map(user => {
-                return <>{user.optionName} <Badge variant="light">Watching (1min)</Badge></>
+                return <>{user} <Badge variant="light">Watching (1min)</Badge></>
               })}</>
               <Driver/>
               </Col>

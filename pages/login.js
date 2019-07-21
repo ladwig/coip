@@ -93,7 +93,7 @@ class Login extends Component {
   }
 
    render() {
-      console.log(this.state.tempname)
+      console.log(this.state.optionName)
     if(!this.props.loggedIn) {
       return (
         <div>

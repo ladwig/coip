@@ -22,8 +22,9 @@ class Main extends Component {
       if(content.allowed) {
         return {
           loggedIn: true,
-           user: content.user,
+           user: content.user
         }
+        console.log('ok')
       }
     }
      catch(e) {

@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
     // gespeichert. Der Token wird auch ans Frontend returned (dort wird dann Cookie generiert)
     if (response.status === 200) {
       const token = String(Math.random().toString(36).split('.')[1]);
-      
+
       tokens[username] = {
         token,
         date: Date.now(),
@@ -56,7 +56,14 @@ module.exports = async (req, res) => {
   }
 
   if (type === 'list-users') {
-    res.json(Object.keys(tokens));
+    const users = Object.values(tokens).map((user, index) => {
+      delete user.token;
+      user.username = Object.keys(tokens)[index];
+
+      return user;
+    });
+
+    res.json(users);
     return;
   }
 

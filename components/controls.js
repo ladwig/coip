@@ -29,9 +29,7 @@ class Controls extends Component {
 
      ws.onerror = (e) => {
        console.error(e);
-       this.setState({
-         online: false
-       });
+       // hier noch timeout für reconnect einbauen!
      }
 
      ws.onopen = () => {

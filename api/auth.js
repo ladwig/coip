@@ -61,8 +61,23 @@ module.exports = async (req, res) => {
   }
 
   if (type === 'delete-token') {
-    console.log(req.cookies)
-    res.send('test')
+    const { token } = req.cookies;
+
+    if (!token) {
+      res.json({ allowed: false });
+      return;
+    }
+
+    const username = Object.keys(tokens).find(username => {
+      const user = tokens[username];
+      return user.token === token;
+    });
+
+    if (username) {
+      delete tokens[username];
+    }
+
+    res.json({ deleted: true });
     return;
   }
 

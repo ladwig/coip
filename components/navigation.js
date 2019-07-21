@@ -11,13 +11,12 @@ class Navigation extends Component {
   }
 
   async logout() {
+                document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
       try {
         const response = await fetch(serverUrl + '/api/auth?type=delete-token');
         const content = await response.json();
-
         if (response.status === 200) {
           console.log('logout successful')
-          document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
           Router.push('/login')
         }
       } catch(e) {

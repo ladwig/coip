@@ -119,7 +119,7 @@ class Login extends Component {
               </Form.Group>
               <Form.Group>
                 <Form.Label>Name <small> (optional)</small></Form.Label>
-                <Form.Control name="tempname" type="text" placeholder="Heinz Gaul" value={this.state.tempname} onChange={this.handleChange}/>
+                <Form.Control name="tempname" type="text" placeholder="Heinz Gaul" value={this.state.optionName} onChange={this.handleChange}/>
               </Form.Group>
               <Button variant="warning" type="submit">Login</Button>
           </Form>

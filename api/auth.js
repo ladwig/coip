@@ -7,7 +7,6 @@ module.exports = async (req, res) => {
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 
   const { type } = req.query;
-  console.log(process.env)
 
   //Wird beim Login ausgeführt. Codiert übergebene credentials und übergibt diese an FHWS-API
   if (type === 'issue-token') {

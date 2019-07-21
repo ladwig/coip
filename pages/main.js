@@ -98,7 +98,7 @@ class Main extends Component {
               <Controls/>
                 <Container/>
                   </Col>
-              <Col xs={12} sm={2}><Badge variant="light">9</Badge> User online <br/><br/>
+              <Col xs={12} sm={2}><Badge variant="light">{this.state.activeUsers.length}</Badge> User online <br/><br/>
               <>{this.state.activeUsers.map(user => {
                 return <>{user.optionName || user.username} <Badge variant="light">Watching (1min)</Badge></>
               })}</>

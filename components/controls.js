@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { Button, Alert } from 'react-bootstrap';
 
 const WebSocket = require('isomorphic-ws');
-const ws = new WebSocket('ws://localhost:8080');
+const ws = new WebSocket('ws://car-over-ip-socket.now.sh');
 const code = new Uint8Array(1);
 
 let W = false;

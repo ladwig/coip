@@ -8,7 +8,7 @@ class Navigation extends Component {
     super(props);
   }
 
-  logout() {
+  async logout() {
 
 
       try {

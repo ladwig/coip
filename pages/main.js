@@ -12,6 +12,8 @@ import Driver from '../components/driver'
 const fetch = require('isomorphic-fetch')
 const WebSocket = require('ws');
 
+const serverUrl = process.env.NOW_URL || 'http://localhost:3000';
+
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,7 @@ class Main extends Component {
   static async getInitialProps({req, res}) {
     try {
       const token = req.headers.cookie.split('=')[1]
-      const response = await fetch('http://localhost:4000/verify', {
+      const response = await fetch(serverUrl + '/api/auth?type=verify', {
         headers: {
           Authorization: 'Bearer ' + token
         }
@@ -61,11 +63,11 @@ class Main extends Component {
         <Navigation loggedIn={this.props.loggedIn} user={this.props.user}/>
           <Container className="container">
             <Row>
-              <Col xs={12} sm={9}><Video/>
+              <Col xs={12} sm={10}><Video/>
               <Controls/>
                 <Container/>
                   </Col>
-              <Col xs={12} sm={3}><Badge variant="light">9</Badge> User online <br/><br/>
+              <Col xs={12} sm={2}><Badge variant="light">9</Badge> User online <br/><br/>
               Ismar Klokic <Badge variant="dark">Waiting (2min)</Badge><br/>
               Hakan Arda <Badge variant="light">Watching (71min)</Badge><br/>
               Pascal Ott <Badge variant="light">Watching (4min)</Badge><br/>

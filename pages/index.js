@@ -6,12 +6,14 @@ import Navigation from '../components/navigation'
 import Impress from '../components/impress'
 import Dsgvo from '../components/dsgvo'
 
+const serverUrl = process.env.NOW_URL || 'http://localhost:3000';
+
 class Main extends Component {
 
   static async getInitialProps({req, res}) {
     try {
       const token = req.headers.cookie.split('=')[1]
-      const response = await fetch('http://localhost:4000/verify', {
+      const response = await fetch(serverUrl + '/api/auth?type=verify', {
         headers: {
           Authorization: 'Bearer ' + token
         }
@@ -128,6 +130,5 @@ class Main extends Component {
     )
   }
 }
-
 
 export default Main;

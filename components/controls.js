@@ -11,6 +11,7 @@ let S = false;
 let D = false;
 
 ws.binaryType = "arraybuffer";
+
 ws.onerror = (e) => {
   console.error(e);
   // hier noch timeout für reconnect einbauen!

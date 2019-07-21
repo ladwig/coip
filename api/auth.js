@@ -45,7 +45,8 @@ module.exports = async (req, res) => {
   if (type === 'verify') {
     const token = String(req.headers['authorization']).replace('Bearer ', '');
     const found = Object.values(tokens).find(item => item.token === token);
-    const user = Object.keys(tokens).find(key => tokens[key] === found);
+    const user = Object.keys(tokens).find(key => tokens[key] === found)
+    const users = Object.keys(tokens)
 
     if (found !== undefined) {
       res.json({ allowed: true, user: user });

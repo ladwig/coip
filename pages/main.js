@@ -34,21 +34,20 @@ class Main extends Component {
           loggedIn: true,
            user: content.user,
         }
-        if (res) {
-          res.writeHead(302, {
-            Location: '/login'
-          });
-          res.end()
-        }
-        else {
-          Router.push('/login')
-        }
       }
     }
      catch(e) {
       console.log(e)
     }
-
+    if (res) {
+      res.writeHead(302, {
+        Location: '/login'
+      });
+      res.end()
+    }
+    else {
+      Router.push('/login')
+    }
     return { loggedIn: false }
   }
 

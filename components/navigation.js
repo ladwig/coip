@@ -17,6 +17,8 @@ class Navigation extends Component {
         document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
         Router.push("/login");
       }
+
+      console.log(response.status)
     } catch (e) {
       console.log(e);
     }

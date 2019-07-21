@@ -1,8 +1,7 @@
 import { Component } from 'react';
 import { Button, Alert } from 'react-bootstrap';
+import WebSocket from 'isomorphic-ws';
 
-const WebSocket = require('isomorphic-ws');
-const ws = new WebSocket('wss://car-over-ip-socket.now.sh');
 const code = new Uint8Array(1);
 
 let W = false;
@@ -10,18 +9,7 @@ let A = false;
 let S = false;
 let D = false;
 
-ws.binaryType = "arraybuffer";
-
-ws.onerror = (e) => {
-  console.error(e);
-  // hier noch timeout für reconnect einbauen!
-}
-
-ws.onopen = () => {
-  this.setState({
-    online: true
-  });
-}
+let ws = null;
 
 class Controls extends Component {
   constructor(props) {
@@ -34,6 +22,22 @@ class Controls extends Component {
  componentDidMount = () => {
    window.addEventListener("keyup", this.keyUpHandler) //EventListener für Keyeingabe starten
    window.addEventListener("keydown", this.keyDownHandler) //EventListener für Keyeingabe starten
+
+   if (!ws) {
+     ws = new WebSocket('wss://car-over-ip-socket.now.sh');
+     ws.binaryType = "arraybuffer";
+
+     ws.onerror = (e) => {
+       console.error(e);
+       // hier noch timeout für reconnect einbauen!
+     }
+
+     ws.onopen = () => {
+       this.setState({
+         online: true
+       });
+     }
+   }
  }
 
   componentWillUnmount = () => {

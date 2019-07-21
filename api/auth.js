@@ -60,5 +60,11 @@ module.exports = async (req, res) => {
     return;
   }
 
+  if (type === 'delete-token') {
+    console.log(req.cookies)
+    res.send('test')
+    return;
+  }
+
   res.send("ok")
 }

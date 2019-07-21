@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
   //Wird beim Login ausgeführt. Codiert übergebene credentials und übergibt diese an FHWS-API
   if (type === 'issue-token') {
     const credentials = String(req.headers['authorization']).replace('Basic ', '');
+    const tempname = String(req.headers['name']);
     const [username, password] = credentials.split(':');
     const encodedCredentials = new Buffer(credentials).toString('base64');
     const response = await fetch('https://api.fiw.fhws.de/auth/api/users/me', {
@@ -26,9 +27,10 @@ module.exports = async (req, res) => {
 
       tokens[username] = {
         token,
-        date: Date.now()
+        date: Date.now(),
+        tempname
       };
-
+      console.log(tokens[username].tempname)
       res.json({ token });
       return;
     }

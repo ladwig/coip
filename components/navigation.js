@@ -11,7 +11,6 @@ class Navigation extends Component {
   async logout() {
     try {
       const response = await fetch("/api/auth?type=delete-token");
-
       if (response.status === 200) {
         document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
         Router.push("/login");

@@ -42,7 +42,8 @@ class Login extends Component {
     try {
       const response = await fetch('/api/auth?type=issue-token', {
         headers: {
-          Authorization:  'Basic ' + this.state.user + ':' + this.state.password //evtl. direkt auf Client verschlüsseln?
+          Authorization:  'Basic ' + this.state.user + ':' + this.state.password,
+          Name: this.state.tempname
         }
       });
       const content = await response.json()

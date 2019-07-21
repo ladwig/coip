@@ -10,6 +10,7 @@ import Video from '../components/video'
 import Driver from '../components/driver'
 
 const fetch = require('isomorphic-fetch')
+const WebSocket = require('ws');
 
 const serverUrl =  process.env.NOW_REGION === 'dev1' ? 'http://localhost:3000' : 'https://car-over-ip.now.sh';
 

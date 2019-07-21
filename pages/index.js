@@ -6,7 +6,7 @@ import Navigation from '../components/navigation'
 import Impress from '../components/impress'
 import Dsgvo from '../components/dsgvo'
 
-const serverUrl =  process.env.NOW_REGION === 'dev1' ? 'http://localhost:3000' : 'https://car-over-ip.now.sh';
+const serverUrl = process.env.NOW_REGION === 'dev1' ? 'http://localhost:3000' : 'https://car-over-ip.now.sh';
 
 class Main extends Component {
 

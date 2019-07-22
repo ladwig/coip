@@ -7,7 +7,7 @@ import Header from '../components/header'
 import Navigation from '../components/navigation'
 
 const fetch = require('isomorphic-fetch')
-const serverUrl = 'https://car-over-ip.now.sh';
+const serverUrl = process.env.NOW_REGION === 'dev1' ? 'http://localhost:3000' : 'https://car-over-ip.now.sh';
 
 class Login extends Component {
   constructor(props) {

@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
         date: Date.now(),
         optionName
       };
-      console.log(tokens[username].optionName)
+      
       res.json({ token });
       return;
     }

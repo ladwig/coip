@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
     const token = String(req.headers['authorization']).replace('Bearer ', '');
     const found = Object.values(tokens).find(item => item.token === token);
     const user = Object.keys(tokens).find(key => tokens[key] === found)
-    console.log(token + 'ABGEFRAGT!'
+    console.log(token + 'ABGEFRAGT!')
     if (found !== undefined) {
       res.json({ allowed: true, user: user });
       return;

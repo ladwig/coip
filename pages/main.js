@@ -12,7 +12,7 @@ import Driver from '../components/driver'
 const fetch = require('isomorphic-fetch')
 const WebSocket = require('ws');
 
-const serverUrl =  process.env.NOW_REGION === 'dev1' ? 'http://localhost:3000' : 'https://car-over-ip.now.sh';
+const serverUrl =  'https://car-over-ip.now.sh';
 
 class Main extends Component {
   constructor(props) {

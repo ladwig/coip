@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import { Badge } from 'react-bootstrap'
-
 const fetch = require('isomorphic-fetch')
 const WebSocket = require('ws');
 
@@ -14,7 +13,6 @@ class OnlineUser extends Component {
       activeUsers: []
     }
 
-    this.fetchActiveUsers = this.fetchActiveUsers.bind(this);
   }
 
   static async fetchActiveUsers() {
@@ -33,21 +31,15 @@ class OnlineUser extends Component {
   }
 
   componentDidMount() {
-    setTimeout(this.fetchActiveUsers(), 6000);
+    setTimeout(fetchActiveUsers(), 6000);
   }
 
   render() {
       return (
         <div>
-          <Badge variant="light">{this.state.activeUsers.length}</Badge> User online <br/><br/>
-              <>{this.state.activeUsers.map(user => {
-                return <>{user.optionName || user.username} <Badge variant="light">Watching (1min)</Badge></>
-              })}</>
-          <style jsx global>{`
-              .container {
-                margin-top: 5vh;
-              }
-           `}</style>
+          {this.state.activeUsers.map(user => {
+                return {user.optionName || user.username}
+              })}
         </div>
       )
   }

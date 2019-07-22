@@ -7,7 +7,7 @@ import Navigation from '../components/navigation'
 import Header from '../components/header'
 import Controls from '../components/controls'
 import Video from '../components/video'
-import Driver from '../components/driver'
+import OnlineUser from '../components/onlineuser'
 
 const fetch = require('isomorphic-fetch')
 const WebSocket = require('ws');
@@ -64,7 +64,7 @@ class Main extends Component {
           <Container className="container">
             <Row>
               <Col xs={12} sm={10}><Video/>
-              <Controls/>
+              <Controls/><OnlineUser/>
                 <Container/>
                   </Col>
             </Row>

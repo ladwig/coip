@@ -18,11 +18,9 @@ class Main extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      activeUsers: []
-    }
+  
 
-  //  this.fetchActiveUsers = this.fetchActiveUsers.bind(this);
+//    this.fetchActiveUsers = this.fetchActiveUsers.bind(this);
   }
 
   //Prüft ob token im gesetzen Cookie mit token auf Backendserver übereinstimmt,
@@ -99,11 +97,7 @@ class Main extends Component {
               <Controls/>
                 <Container/>
                   </Col>
-            //  <Col xs={12} sm={2}><Badge variant="light">{this.state.activeUsers.length}</Badge> User online <br/><br/>
-          //    <>{this.state.activeUsers.map(user => {
-            //    return <>{user.optionName || user.username} <Badge variant="light">Watching (1min)</Badge></>
-            //  <Driver/>
-          //    </Col>
+
             </Row>
           </Container>
 

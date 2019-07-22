@@ -8,18 +8,18 @@ class Navigation extends Component {
     super(props);
   }
 
-  // async logout() {
-  //   try {
-  //     const response = await fetch("/api/auth?type=delete-token");
-  //     if (response.status === 200) {
-  //       document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-  //       Router.push("/login");
-  //     }
-  //
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
+  async logout() {
+    try {
+      const response = await fetch("/api/auth?type=delete-token");
+      if (response.status === 200) {
+        document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+        Router.push("/login");
+      }
+
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   render() {
     return (
@@ -45,7 +45,7 @@ class Navigation extends Component {
                 title={this.props.user}
               >
                 <Dropdown.Item href="index">Startseite</Dropdown.Item>
-                <Dropdown.Item>Logout</Dropdown.Item>
+                <Dropdown.Item onClick={this.logout}>Logout</Dropdown.Item>
               </DropdownButton>
             ) : null}
           </Navbar.Text>

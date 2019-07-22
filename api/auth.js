@@ -8,6 +8,10 @@ module.exports = async (req, res) => {
 
   const { type } = req.query;
 
+  setInterval(function() {
+  console.log(tokens)
+  }, 5000);
+
   //Wird beim Login ausgeführt. Codiert übergebene credentials und übergibt diese an FHWS-API
   if (type === 'issue-token') {
     const credentials = String(req.headers['authorization']).replace('Basic ', '');
@@ -46,7 +50,7 @@ module.exports = async (req, res) => {
     const token = String(req.headers['authorization']).replace('Bearer ', '');
     const found = Object.values(tokens).find(item => item.token === token);
     const user = Object.keys(tokens).find(key => tokens[key] === found)
-
+    console.log(token)
     if (found !== undefined) {
       res.json({ allowed: true, user: user });
       return;

@@ -58,27 +58,30 @@ class Main extends Component {
     return { loggedIn: false }
   }
 
-  async fetchActiveUsers() {
-    try {
-      const response = await fetch(serverUrl + '/api/auth?type=list-users');
-      const content = await response.json();
-
-      if (response.status === 200) {
-        this.setState({
-          activeUsers: content
-        })
-      }
-    } catch(e) {
-      console.log(e)
-    }
-  }
-
-  componentDidMount() {
-    setTimeout(this.fetchActiveUsers(), 6000);
-  }
-
-  componentWillUnmount() {
-  }
+  // async fetchActiveUsers() {
+  //   try {
+  //     const response = await fetch(serverUrl + '/api/auth?type=list-users');
+  //     const content = await response.json();
+  //
+  //     if (response.status === 200) {
+  //       this.setState({
+  //         activeUsers: content
+  //       })
+  //     }
+  //   } catch(e) {
+  //     console.log(e)
+  //   }
+  // }
+  //
+  // componentDidMount() {
+  //   setTimeout(this.fetchActiveUsers, 6000);
+  // }
+  //
+  // componentWillUnmount() {
+  //   if (this.activeUserTimeout) {
+  //     clearTimeout(this.activeUserTimeout);
+  //   }
+  // }
 
   render() {
     if (this.props.loggedIn) {
@@ -95,12 +98,13 @@ class Main extends Component {
               <Controls/>
                 <Container/>
                   </Col>
-              <Col xs={12} sm={2}><Badge variant="light">{this.state.activeUsers.length}</Badge> User online <br/><br/>
-              <>{this.state.activeUsers.map(user => {
-                return <>{user.optionName || user.username} <Badge variant="light">Watching (1min)</Badge></>
-              })}</>
-              <Driver/>
-              </Col>
+                  <Col xs={12} sm={2}></Col>
+              // <Col xs={12} sm={2}><Badge variant="light">{this.state.activeUsers.length}</Badge> User online <br/><br/>
+              // <>{this.state.activeUsers.map(user => {
+              //   return <>{user.optionName || user.username} <Badge variant="light">Watching (1min)</Badge></>
+              // })}</>
+              // <Driver/>
+              // </Col>
             </Row>
           </Container>
 

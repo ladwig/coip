@@ -57,7 +57,7 @@ class Main extends Component {
     return { loggedIn: false }
   }
 
-  static async fetchActiveUsers() {
+  async fetchActiveUsers() {
     try {
       const response = await fetch(serverUrl + '/api/auth?type=list-users');
       const content = await response.json();

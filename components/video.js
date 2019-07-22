@@ -21,7 +21,7 @@ class Video extends Component {
 render() {
     return (
       <div>
-  <img src="../static/bg.jpg"></img>
+  <img src="../static/fakecam.jpg"></img>
      </div>
     )
   }

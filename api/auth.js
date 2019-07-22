@@ -55,6 +55,7 @@ module.exports = async (req, res) => {
     return;
   }
 
+  //Wird zur Aktualisierung der Liste der online User angefragt
   if (type === 'list-users') {
     const users = Object.values(tokens).map((user, index) => {
       delete user.token;
@@ -67,6 +68,7 @@ module.exports = async (req, res) => {
     return;
   }
 
+  //Wird angefragt, wenn User sich ausloggt
   if (type === 'delete-token') {
     const { token } = req.cookies;
 

@@ -58,6 +58,7 @@ class Main extends Component {
     return { loggedIn: false }
   }
 
+  //Zeigt Liste der aktiven Nutzer an (Nutzer wird aktuell nur aus Liste entfernt, wenn er sich ausloggt)
   async fetchActiveUsers() {
     try {
       const response = await fetch(serverUrl + '/api/auth?type=list-users');

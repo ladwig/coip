@@ -12,7 +12,6 @@ const serverUrl = process.env.NOW_REGION === 'dev1' ? 'http://localhost:3000' : 
 class Login extends Component {
   constructor(props) {
      super(props);
-     //Legt die initialen States für user und password fest
      this.state = {
        user: "",
        password: "",

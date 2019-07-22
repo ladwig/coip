@@ -1,4 +1,4 @@
-import { Component, createRef } from 'react'
+import { Component, createRef, Image } from 'react'
 import { Image } from 'react-bootstrap'
 import Head from 'next/head'
 import WSAvcPlayer from 'ws-avc-player/lib/WSAvcPlayer.js';
@@ -21,7 +21,7 @@ class Video extends Component {
 render() {
     return (
       <div>
-  <img src="../static/fakecam.jpg"></img>
+  <Image src="../static/fakecam.jpg"></Image>
      </div>
     )
   }

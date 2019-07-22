@@ -17,12 +17,6 @@ const serverUrl =  process.env.NOW_REGION === 'dev1' ? 'http://localhost:3000' :
 class Main extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      activeUsers: []
-    }
-
-    this.fetchActiveUsers = this.fetchActiveUsers.bind(this);
   }
 
   //Prüft ob token im gesetzen Cookie mit token auf Backendserver übereinstimmt,
@@ -58,38 +52,6 @@ class Main extends Component {
     return { loggedIn: false }
   }
 
-  // async fetchActiveUsers() {
-  //   try {
-  //     const response = await fetch(serverUrl + '/api/auth?type=list-users');
-  //     const content = await response.json();
-  //
-  //     if (response.status === 200) {
-  //       this.setState({
-  //         activeUsers: content
-  //       })
-  //     }
-  //   } catch(e) {
-  //     console.log(e)
-  //   }
-  // }
-  //
-  // componentDidMount() {
-  //   setTimeout(this.fetchActiveUsers, 6000);
-  // }
-  //
-  // componentWillUnmount() {
-  //   if (this.activeUserTimeout) {
-  //     clearTimeout(this.activeUserTimeout);
-  //   }
-  // }
-
-  // <Col xs={12} sm={2}><Badge variant="light">{this.state.activeUsers.length}</Badge> User online <br/><br/>
-  // <>{this.state.activeUsers.map(user => {
-  //   return <>{user.optionName || user.username} <Badge variant="light">Watching (1min)</Badge></>
-  // })}</>
-  // <Driver/>
-  // </Col>
-
   render() {
     if (this.props.loggedIn) {
       return (
@@ -105,7 +67,6 @@ class Main extends Component {
               <Controls/>
                 <Container/>
                   </Col>
-                  <Col xs={12} sm={2}></Col>
             </Row>
           </Container>
 

@@ -22,7 +22,7 @@ class Main extends Component {
       activeUsers: []
     }
 
-    this.fetchActiveUsers = this.fetchActiveUsers.bind(this);
+  //  this.fetchActiveUsers = this.fetchActiveUsers.bind(this);
   }
 
   //Prüft ob token im gesetzen Cookie mit token auf Backendserver übereinstimmt,
@@ -59,30 +59,30 @@ class Main extends Component {
   }
 
   //Zeigt Liste der aktiven Nutzer an (Nutzer wird aktuell nur aus Liste entfernt, wenn er sich ausloggt)
-  async fetchActiveUsers() {
-    try {
-      const response = await fetch(serverUrl + '/api/auth?type=list-users');
-      const content = await response.json();
-
-      if (response.status === 200) {
-        this.setState({
-          activeUsers: content
-        })
-      }
-    } catch(e) {
-      console.log(e)
-    }
-  }
-
-  componentDidMount() {
-    this.activeUserTimeout = setTimeout(this.fetchActiveUsers, 6000);
-  }
-
-  componentWillUnmount() {
-    if (this.activeUserTimeout) {
-      clearTimeout(this.activeUserTimeout);
-    }
-  }
+  // async fetchActiveUsers() {
+  //   try {
+  //     const response = await fetch(serverUrl + '/api/auth?type=list-users');
+  //     const content = await response.json();
+  //
+  //     if (response.status === 200) {
+  //       this.setState({
+  //         activeUsers: content
+  //       })
+  //     }
+  //   } catch(e) {
+  //     console.log(e)
+  //   }
+  // }
+  //
+  // componentDidMount() {
+  //   this.activeUserTimeout = setTimeout(this.fetchActiveUsers, 6000);
+  // }
+  //
+  // componentWillUnmount() {
+  //   if (this.activeUserTimeout) {
+  //     clearTimeout(this.activeUserTimeout);
+  //   }
+  // }
 
   render() {
     if (this.props.loggedIn) {
@@ -99,12 +99,11 @@ class Main extends Component {
               <Controls/>
                 <Container/>
                   </Col>
-              <Col xs={12} sm={2}><Badge variant="light">{this.state.activeUsers.length}</Badge> User online <br/><br/>
-              <>{this.state.activeUsers.map(user => {
-                return <>{user.optionName || user.username} <Badge variant="light">Watching (1min)</Badge></>
-              })}</>
-              <Driver/>
-              </Col>
+            //  <Col xs={12} sm={2}><Badge variant="light">{this.state.activeUsers.length}</Badge> User online <br/><br/>
+          //    <>{this.state.activeUsers.map(user => {
+            //    return <>{user.optionName || user.username} <Badge variant="light">Watching (1min)</Badge></>
+            //  <Driver/>
+          //    </Col>
             </Row>
           </Container>
 

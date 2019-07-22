@@ -74,7 +74,7 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    setTimeout(this.fetchActiveUsers, 6000);
+  
   }
 
   componentWillUnmount() {

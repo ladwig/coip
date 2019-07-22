@@ -2,14 +2,6 @@ const fetch = require('isomorphic-fetch');
 
 const tokens = {}; //Objekt, das eingeloggte User in Form von tokens speichert
 
-function start() {
-  // your code here
-  setTimeout(start, 3000);
-}
-
-// boot up the first call
-start();
-
 module.exports = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");

@@ -33,13 +33,7 @@ class OnlineUser extends Component {
   }
 
   componentDidMount() {
-    setTimeout(this.fetchActiveUsers, 6000);
-  }
-
-  componentWillUnmount() {
-    if (this.activeUserTimeout) {
-      clearTimeout(this.activeUserTimeout);
-    }
+    setTimeout(this.fetchActiveUsers(), 6000);
   }
 
   render() {

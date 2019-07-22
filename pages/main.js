@@ -7,7 +7,6 @@ import Navigation from '../components/navigation'
 import Header from '../components/header'
 import Controls from '../components/controls'
 import Video from '../components/video'
-import OnlineUser from '../components/onlineuser'
 
 const fetch = require('isomorphic-fetch')
 const WebSocket = require('ws');
@@ -21,7 +20,7 @@ class Main extends Component {
 
   //Prüft ob token im gesetzen Cookie mit token auf Backendserver übereinstimmt,
   //falls nicht, wird User auf Login verwiesen
-  static async getInitialProps({req, res}) {
+  async getInitialProps({req, res}) {
     try {
       const token = req.headers.cookie.split('=')[1]
       const response = await fetch(serverUrl + '/api/auth?type=verify', {
@@ -64,7 +63,7 @@ class Main extends Component {
           <Container className="container">
             <Row>
               <Col xs={12} sm={10}><Video/>
-              <Controls/><OnlineUser/>
+              <Controls/>
                 <Container/>
                   </Col>
             </Row>

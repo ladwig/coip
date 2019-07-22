@@ -10,17 +10,17 @@ class Video extends Component {
   }
   //Hier sollte die Videofunktion eingefuegt werden. Stream von Rapsi zu Backend funktioniert,
   //das rendern des Video canvas nicht
-  
+
 componentDidMount() {
 // const uri = "ws://192.168.0.19:8080";
 // let wsavc = new WSAvcPlayer(this.canvas, "webgl");
 // wsavc.connect(uri);
 }
+//	for render() <canvas width="960" height="540" ref={this.canvas}></canvas>
 
 render() {
     return (
       <div>
-//	<canvas width="960" height="540" ref={this.canvas}></canvas>
   <canvas width="960" height="540"></canvas>
      </div>
     )

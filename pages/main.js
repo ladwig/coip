@@ -77,7 +77,7 @@ class Main extends Component {
     this.activeUserTimeout = setTimeout(this.fetchActiveUsers, 6000);
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     if (this.activeUserTimeout) {
       clearTimeout(this.activeUserTimeout);
     }

@@ -98,6 +98,27 @@ class Controls extends Component {
     }
   }
 
+  handleMouseLeave = (v) => {
+    switch (v) {
+      case("w"):
+        code[0] = 11;
+        this.send();
+        break
+      case("a"):
+        code[0] = 41;
+        this.send();
+        break
+      case("s"):
+        code[0] = 31;
+        this.send();
+        break
+      case("d"):
+        code[0] = 21;
+        this.send();
+        break
+    }
+  }
+
 //Tastatureingabe auf WASD und Kombinationseingabe prüfen und per WS an Raspi schicken
   keyUpHandler = (e) => {
     switch (e.keyCode) {
@@ -171,17 +192,17 @@ class Controls extends Component {
       return (
         <div>
           <div className="goforward" >
-            <Button variant="warning" onMouseDown={() => this.handleMouseDown("w")} onMouseUp={() => this.handleMouseUp("w")}>↑</Button>
+            <Button variant="warning" onMouseDown={() => this.handleMouseDown("w")} onMouseUp={() => this.handleMouseUp("w")} onMouseLeave={() => this.handleMouseLeave("w")}>↑</Button>
           </div>
           <div className="lbr">
-            <Button variant="warning" onMouseDown={() => this.handleMouseDown("a")} onMouseUp={() => this.handleMouseUp("a")}>←</Button>
+            <Button variant="warning" onMouseDown={() => this.handleMouseDown("a")} onMouseUp={() => this.handleMouseUp("a")} onMouseLeave={() => this.handleMouseLeave("a")}>←</Button>
           <div className="placeholder">
             <Button variant="disabled">-</Button>
           </div>
-            <Button variant="warning" onMouseDown={() => this.handleMouseDown("d")} onMouseUp={() => this.handleMouseUp("d")}>→</Button>
+            <Button variant="warning" onMouseDown={() => this.handleMouseDown("d")} onMouseUp={() => this.handleMouseUp("d")} onMouseLeave={() => this.handleMouseLeave("d")}>→</Button>
           </div>
             <div className="gobackwards" >
-            <Button variant="warning" onMouseDown={() => this.handleMouseDown("s")} onMouseUp={() => this.handleMouseUp("s")}>↓</Button>
+            <Button variant="warning" onMouseDown={() => this.handleMouseDown("s")} onMouseUp={() => this.handleMouseUp("s")} onMouseLeave={() => this.handleMouseLeave("s")}>↓</Button>
           </div>
             <style jsx global>{`
 

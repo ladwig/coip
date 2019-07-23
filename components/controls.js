@@ -38,7 +38,7 @@ class Controls extends Component {
            online: true
          });
        }
-     });
+     }
 
      ws.onopen = () => {
      }

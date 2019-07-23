@@ -33,7 +33,7 @@ class Controls extends Component {
      }
 
      ws.onmessage = (data) => {
-       if(data == 1010) {
+       if(data.data == 1010) {
          this.setState({
            online: true
          });

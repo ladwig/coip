@@ -37,6 +37,7 @@ class Controls extends Component {
          this.setState({
            online: true
          });
+         console.log(data.data)
        }
        console.log(data)
      }

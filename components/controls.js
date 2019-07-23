@@ -58,28 +58,6 @@ class Controls extends Component {
   handleMouseDown = (v) => {
     switch (v) {
       case("w"):
-        code[0] = 11;
-        this.send();
-        break
-      case("a"):
-        code[0] = 41;
-        this.send();
-        break
-      case("s"):
-        code[0] = 31;
-        this.send();
-        break
-      case("d"):
-        code[0] = 21;
-        this.send();
-        break
-    }
-  }
-
-//MouseUp events handeln
-  handleMouseUp = (v) => {
-    switch (v) {
-      case("w"):
         code[0] = 10;
         this.send();
         break
@@ -93,6 +71,28 @@ class Controls extends Component {
         break
       case("d"):
         code[0] = 20;
+        this.send();
+        break
+    }
+  }
+
+//MouseUp events handeln
+  handleMouseUp = (v) => {
+    switch (v) {
+      case("w"):
+        code[0] = 11;
+        this.send();
+        break
+      case("a"):
+        code[0] = 41;
+        this.send();
+        break
+      case("s"):
+        code[0] = 31;
+        this.send();
+        break
+      case("d"):
+        code[0] = 21;
         this.send();
         break
     }

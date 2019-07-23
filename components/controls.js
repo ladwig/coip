@@ -42,6 +42,7 @@ class Controls extends Component {
        console.log(data)
      }
    }
+   this.raspiOnline();
  }
 
   componentWillUnmount = () => {
@@ -52,6 +53,15 @@ class Controls extends Component {
   send = () => {
     try {
       ws.send(code.buffer);
+    }
+    catch(e) {
+      console.log(e)
+    }
+  }
+
+  raspiOnline = () => {
+    try {
+      ws.send(1010);
     }
     catch(e) {
       console.log(e)

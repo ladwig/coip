@@ -32,7 +32,7 @@ class Controls extends Component {
        // hier noch timeout für reconnect einbauen!
      }
 
-     ws.onmessage = function incoming(data) {
+     ws.onmessage = (data) => {
        if(data === 'raspionline') {
          this.setState({
            online: true

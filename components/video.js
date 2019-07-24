@@ -1,5 +1,5 @@
 import { Component, createRef } from 'react'
-import { Image, Alert } from 'react-bootstrap'
+import { Image, Alert, Button } from 'react-bootstrap'
 import Head from 'next/head'
 // import WSAvcPlayer from 'ws-avc-player/lib/WSAvcPlayer.js';
 

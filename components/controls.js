@@ -38,7 +38,7 @@ class Controls extends Component {
 
      ws.onopen = () => {
        this.setState({
-         rapsionline: true
+         wsonline: true
        });
      }
 

@@ -33,7 +33,7 @@ class Controls extends Component {
        // hier noch timeout für reconnect einbauen!
      }
 
-     ws.onconnection = () => {
+     ws.onconnect = () => {
        this.setState({
          wsonline: true
        });

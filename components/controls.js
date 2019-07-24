@@ -42,15 +42,7 @@ class Controls extends Component {
        console.log(data)
      }
    }
-   ws.onmessage = (data) => {
-     if(data.data == 1010) {
-       this.setState({
-         online: true
-       });
-       console.log(data.data)
-     }
-     console.log(data)
-   }
+
    this.raspiOnline();
  }
 

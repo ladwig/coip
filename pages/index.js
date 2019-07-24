@@ -9,7 +9,7 @@ import Dsgvo from '../components/dsgvo'
 const fetch = require('isomorphic-fetch')
 const serverUrl = process.env.NOW_REGION === 'dev1' ? 'http://localhost:3000' : 'https://car-over-ip.now.sh';
 
-class Main extends Component {
+class Index extends Component {
 
   static async getInitialProps({req, res}) {
     try {
@@ -132,4 +132,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default Index;

@@ -1,94 +1,124 @@
-const fetch = require('isomorphic-fetch');
+import { Component } from 'react'
+import { Container, Button, Col, Row, Badge } from 'react-bootstrap'
+import Head from 'next/head'
+import Router from 'next/router'
+import Cookies from 'next-cookies'
+import Navigation from '../components/navigation'
+import Header from '../components/header'
+import Controls from '../components/controls'
+import Video from '../components/video'
+import Driver from '../components/driver'
 
-const tokens = {}; //Objekt, das eingeloggte User in Form von tokens speichert
+const fetch = require('isomorphic-fetch')
+const WebSocket = require('ws');
 
-module.exports = async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+const serverUrl =  process.env.NOW_REGION === 'dev1' ? 'http://localhost:3000' : 'https://car-over-ip.now.sh';
 
-  const { type } = req.query;
+class Main extends Component {
+  constructor(props) {
+    super(props);
 
-  //Wird beim Login ausgeführt. Codiert übergebene credentials und übergibt diese an FHWS-API
-  if (type === 'issue-token') {
-    const credentials = String(req.headers['authorization']).replace('Basic ', '');
-    const optionName = String(req.headers['name']);
-    const [username, password] = credentials.split(':');
-    const encodedCredentials = new Buffer(credentials).toString('base64');
-    const response = await fetch('https://api.fiw.fhws.de/auth/api/users/me', {
-      headers: {
-        Authorization: 'Basic ' + encodedCredentials
+    this.state = {
+      activeUsers: []
+    }
+
+    this.fetchActiveUsers = this.fetchActiveUsers.bind(this);
+  }
+
+  //Prüft ob token im gesetzen Cookie mit token auf Backendserver übereinstimmt,
+  //falls nicht, wird User auf Login verwiesen
+  static async getInitialProps({req, res}) {
+    try {
+      const token = req.headers.cookie.split('=')[1]
+      const response = await fetch(serverUrl + '/api/auth?type=verify', {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      });
+      const content = await response.json()
+      if(content.allowed) {
+        return {
+          loggedIn: true,
+           user: content.user
+        }
       }
-    });
-
-    //Wenn FHWS-API positive Rückmeldung gibt, wird token generiert und Objekt "tokens"
-    // gespeichert. Der Token wird auch ans Frontend returned (dort wird dann Cookie generiert)
-    if (response.status === 200) {
-      const token = String(Math.random().toString(36).split('.')[1]);
-
-      tokens[username] = {
-        token,
-        date: Date.now(),
-        optionName
-      };
-      
-      res.json({ token });
-      return;
     }
-
-    //Wenn FHWS-API negative Rückmeldung gibt, wird dies inkl. Statuscode ans Frondend weitergegeben
-    res.json({ allowed: false, status: response.status });
-    return;
+     catch(e) {
+      console.log(e)
+    }
+    if (res) {
+      res.writeHead(302, {
+        Location: '/login'
+      });
+      res.end()
+    }
+    else {
+      Router.push('/login')
+    }
+    return { loggedIn: false }
   }
 
-  //Wird beim aktualsieren von jeglichen Seiten angefragt. Prüft ob Cookie mit token vorhanden ist,
-  //welches zu einem der tokens im Objekt "tokens" passt
-  if (type === 'verify') {
-    const token = String(req.headers['authorization']).replace('Bearer ', '');
-    const found = Object.values(tokens).find(item => item.token === token);
-    const user = Object.keys(tokens).find(key => tokens[key] === found)
-    console.log(token + 'ABGEFRAGT!')
-    if (found !== undefined) {
-      res.json({ allowed: true, user: user });
-      return;
+  async fetchActiveUsers() {
+    try {
+      const response = await fetch(serverUrl + '/api/auth?type=list-users');
+      const content = await response.json();
+
+      if (response.status === 200) {
+        this.setState({
+          activeUsers: content
+        })
+      }
+    } catch(e) {
+      console.log(e)
     }
-    res.json({ allowed: false });
-    return;
   }
 
-  //Wird zur Aktualisierung der Liste der online User angefragt
-  if (type === 'list-users') {
-    const users = Object.values(tokens).map((user, index) => {
-      delete user.token;
-      user.username = Object.keys(tokens)[index];
-
-      return user;
-    });
-
-    res.json(users);
-    return;
+  componentDidMount() {
+    setTimeout(this.fetchActiveUsers, 6000);
   }
 
-  //Wird angefragt, wenn User sich ausloggt
-  if (type === 'delete-token') {
-    const { token } = req.cookies;
-
-    if (!token) {
-      res.json({ allowed: false });
-      return;
+  componentWillUnmount() {
+    if (this.activeUserTimeout) {
+      clearTimeout(this.activeUserTimeout);
     }
-
-    const username = Object.keys(tokens).find(username => {
-      const user = tokens[username];
-      return user.token === token;
-    });
-
-    if (username) {
-      delete tokens[username];
-    }
-
-    res.json({ deleted: true });
-    return;
   }
 
-  res.send("ok")
+  render() {
+    if (this.props.loggedIn) {
+      return (
+        <div>
+        <Header/>
+        <Head>
+          <title>CarOverIP - Let's drive</title>
+        </Head>
+        <Navigation loggedIn={this.props.loggedIn} user={this.props.user}/>
+          <Container className="container">
+            <Row>
+              <Col xs={12} sm={10}><Video/>
+              <Controls/>
+                <Container/>
+                  </Col>
+              <Col xs={12} sm={2}><Badge variant="light">{this.state.activeUsers.length}</Badge> User online <br/><br/>
+              <>{this.state.activeUsers.map(user => {
+                return <>{user.optionName || user.username} <Badge variant="light">Watching (1min)</Badge></>
+              })}</>
+              <Driver/>
+              </Col>
+            </Row>
+          </Container>
+
+          <style jsx global>{`
+              .container {
+                margin-top: 5vh;
+              }
+           `}</style>
+        </div>
+      )
+    }
+    else {
+      return (<div><Header/>not allowed</div>)
+    }
+  }
 }
+
+export default Main;

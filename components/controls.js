@@ -16,7 +16,7 @@ class Controls extends Component {
      super(props);
      this.state = {
        raspionline: false,
-       wsonline: false
+       wsonline: true
      };
  }
 
@@ -30,13 +30,10 @@ class Controls extends Component {
 
      ws.onerror = (e) => {
        console.error(e);
-       // hier noch timeout für reconnect einbauen!
-     }
-
-     ws.onconnect = () => {
        this.setState({
-         wsonline: true
+         wsonline: false
        });
+       // hier noch timeout für reconnect einbauen!
      }
 
      ws.onmessage = (data) => {

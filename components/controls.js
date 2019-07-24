@@ -16,7 +16,7 @@ class Controls extends Component {
      super(props);
      this.state = {
        raspionline: false,
-       wsonline: true
+       wsonline: false
      };
  }
 

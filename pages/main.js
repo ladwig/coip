@@ -63,7 +63,7 @@ class Main extends Component {
           <Container className="container">
             <Row>
               <Col xs={10} sm={10}><Video/>
-              <Controls/>
+            
                 <Container/>
                   </Col>
             </Row>

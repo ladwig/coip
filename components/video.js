@@ -1,7 +1,7 @@
 import { Component, createRef } from 'react'
 import { Image, Alert } from 'react-bootstrap'
 import Head from 'next/head'
-import WSAvcPlayer from 'ws-avc-player/lib/WSAvcPlayer.js';
+// import WSAvcPlayer from 'ws-avc-player/lib/WSAvcPlayer.js';
 
 class Video extends Component {
   constructor(props) {

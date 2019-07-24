@@ -15,7 +15,8 @@ class Controls extends Component {
   constructor(props) {
      super(props);
      this.state = {
-       online: false
+       raspionline: false,
+       wsonline: false
      };
  }
 
@@ -32,18 +33,21 @@ class Controls extends Component {
        // hier noch timeout für reconnect einbauen!
      }
 
+     ws.onconnection = () => {
+       this.setState({
+         wsonline: true
+       });
+     }
+
      ws.onmessage = (data) => {
        if(data.data == 1010) {
          this.setState({
-           online: true
+           rapsionline: true
          });
-         console.log(data.data)
        }
-       console.log(data)
      }
    }
 
-   this.raspiOnline();
  }
 
   componentWillUnmount = () => {
@@ -54,15 +58,6 @@ class Controls extends Component {
   send = () => {
     try {
       ws.send(code.buffer);
-    }
-    catch(e) {
-      console.log(e)
-    }
-  }
-
-  raspiOnline = () => {
-    try {
-      ws.send(1010);
     }
     catch(e) {
       console.log(e)
@@ -203,7 +198,7 @@ class Controls extends Component {
   }
 
   render() {
-    if (this.state.online) {
+    if (this.state.wsonline) {
       return (
         <div>
           <div className="goforward" >

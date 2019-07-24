@@ -62,8 +62,8 @@ class Main extends Component {
         <Navigation loggedIn={this.props.loggedIn} user={this.props.user}/>
           <Container className="container">
             <Row>
-              <Col xs={10} sm={10}><Video/>
-            
+              <Col xs={12} sm={10}><Video/>
+              <Controls/>
                 <Container/>
                   </Col>
             </Row>

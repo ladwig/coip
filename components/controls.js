@@ -36,6 +36,12 @@ class Controls extends Component {
        // hier noch timeout für reconnect einbauen!
      }
 
+     ws.onopen = () => {
+       this.setState({
+         rapsionline: true
+       });
+     }
+
      ws.onmessage = (data) => {
        if(data.data == 1010) {
          this.setState({

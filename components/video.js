@@ -44,7 +44,6 @@ render() {
      </Button>
    </div>
  </Alert>
-  <Image src="../static/fakecam.jpg"></Image>
      </div>
     )
   }

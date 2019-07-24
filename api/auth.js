@@ -58,6 +58,7 @@ module.exports = async (req, res) => {
   //Wird zur Aktualisierung der Liste der online User angefragt
   if (type === 'list-users') {
     const users = Object.values(tokens).map((user, index) => {
+      delete user.token;
       user.username = Object.keys(tokens)[index];
 
       return user;

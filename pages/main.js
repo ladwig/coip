@@ -6,8 +6,6 @@ import Cookies from 'next-cookies'
 import Navigation from '../components/navigation'
 import Header from '../components/header'
 import Controls from '../components/controls'
-import Video from '../components/video'
-import Driver from '../components/driver'
 
 const fetch = require('isomorphic-fetch')
 const WebSocket = require('ws');
